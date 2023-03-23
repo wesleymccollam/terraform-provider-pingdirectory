@@ -15,7 +15,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
-	client "github.com/pingidentity/pingdirectory-go-client/v9100/configurationapi"
+	client "github.com/pingidentity/pingdirectory-go-client/v9200/configurationapi"
 	"github.com/pingidentity/terraform-provider-pingdirectory/internal/operations"
 	"github.com/pingidentity/terraform-provider-pingdirectory/internal/resource/config"
 	internaltypes "github.com/pingidentity/terraform-provider-pingdirectory/internal/types"
@@ -69,7 +69,7 @@ func (r *pingIdentityProxyServerExternalServerResource) Configure(_ context.Cont
 
 	providerCfg := req.ProviderData.(internaltypes.ResourceConfiguration)
 	r.providerConfig = providerCfg.ProviderConfig
-	r.apiClient = providerCfg.ApiClient
+	r.apiClient = providerCfg.ApiClientV9200
 }
 
 func (r *defaultPingIdentityProxyServerExternalServerResource) Configure(_ context.Context, req resource.ConfigureRequest, _ *resource.ConfigureResponse) {
@@ -79,7 +79,7 @@ func (r *defaultPingIdentityProxyServerExternalServerResource) Configure(_ conte
 
 	providerCfg := req.ProviderData.(internaltypes.ResourceConfiguration)
 	r.providerConfig = providerCfg.ProviderConfig
-	r.apiClient = providerCfg.ApiClient
+	r.apiClient = providerCfg.ApiClientV9200
 }
 
 type pingIdentityProxyServerExternalServerResourceModel struct {
@@ -327,7 +327,7 @@ func addOptionalPingIdentityProxyServerExternalServerFields(ctx context.Context,
 	}
 	// Empty strings are treated as equivalent to null
 	if internaltypes.IsNonEmptyString(plan.AuthenticationMethod) {
-		authenticationMethod, err := client.NewEnumexternalServerAuthenticationMethodPropFromValue(plan.AuthenticationMethod.ValueString())
+		authenticationMethod, err := client.NewEnumexternalServerPingIdentityProxyServerAuthenticationMethodPropFromValue(plan.AuthenticationMethod.ValueString())
 		if err != nil {
 			return err
 		}

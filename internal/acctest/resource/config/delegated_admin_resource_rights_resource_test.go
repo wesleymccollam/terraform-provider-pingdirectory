@@ -8,12 +8,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
-	client "github.com/pingidentity/pingdirectory-go-client/v9100/configurationapi"
+	client "github.com/pingidentity/pingdirectory-go-client/v9200/configurationapi"
 	"github.com/pingidentity/terraform-provider-pingdirectory/internal/acctest"
 	"github.com/pingidentity/terraform-provider-pingdirectory/internal/provider"
 )
 
-const testIdDelegatedAdminResourceRights = "MyId"
+const testIdDelegatedAdminResourceRights = "MyDARightsId"
 const testDelegatedAdminRightsName = "myDelegatedAdminRightsName"
 
 // Attributes to test with. Add optional properties to test here if desired.
